@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <title>孩子身高预测计算器</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
+    <script src="https://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class=text-center>孩子身高预测计算器</h1>
+                <div class="alert alert-info" role="alert">暂时只支持计算身高！</div>
+                <div class="form-group">
+                    <label for="a">父亲身高(厘米)</label>
+                    <input type="email" class="form-control" id="a" placeholder="请输入父亲的身高" value="175" oninput="value=value.replace(/[^\d]/g,'')">
+                </div>
+                <div class="form-group">
+                    <label for="b">母亲身高(厘米)</label>
+                    <input type="email" class="form-control" id="b" placeholder="请输入母亲的身高" value="158" oninput="value=value.replace(/[^\d]/g,'')">
+                </div>
+                <div class="form-group">
+                    <label for="c">孩子性别</label>
+                    <select id="c" class="form-control">
+                        <option>男</option>
+                        <option>女</option>
+                    </select>
+                </div>
+                <button class="btn btn-default">计算</button>
+                <br><br>
+                <div class="alert alert-info" role="alert">
+                    <h1>结果：<span id="result"></span></h1>
+                    <p>男性身高＝(父亲身高＋母亲身高)×1.08÷2(厘米)</p>
+                    <p>女性身高＝(父亲身高×0.923＋母亲身高)÷2(厘米)</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        $(function(){
+            $("button").click(function(){
+                var a = parseInt($("#a").val()),
+                b = parseInt($("#b").val()),
+                c = $("#c").val(),
+                r=0;
+                if (c=="男") {
+                    r = (a + b) * 1.08 / 2;
+                } else if (c=="女") {
+                    r = (a * 0.923 + b) / 2;
+                }
+                console.log(typeof(a),typeof(b),c,r)
+                $("#result").text(r.toFixed(2) + " 厘米");
+            });
+        });
+    </script>
+</body>
+</html>
